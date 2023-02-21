@@ -1,6 +1,4 @@
-#!/bin/bash
-
-#include<stdio.h>
+#include "main.h"
 /**
  * main - prit putchar
  *
