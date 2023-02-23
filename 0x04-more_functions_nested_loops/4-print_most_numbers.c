@@ -1,23 +1,19 @@
 #include "main.h"
 
 /**
- * more_numbers - nmbr fct
- * Bwave ICT file
- * Return: no return
- */
+*print_most_numbers - prints
+* owned by Bwave ICT
+*Return: void
+*/
 
-void more_numbers(void)
+void print_most_numbers(void)
 {
+	char c;
 
-int i, j;
-	for (i = 1; i <= 10; i++)
+	for (c = '0'; c <= '9'; c++)
 	{
-		for (j = 0; j <= 14; j++)
-		{
-			if (j >= 10)
-			_putchar('1');
-			_putchar(j % 10 + '0');
-		}
-			_putchar('\n');
-		}
+	if (!(c == '2' || c == '4'))
+	_putchar(c);
+	}
+	_putchar('\n');
 }
