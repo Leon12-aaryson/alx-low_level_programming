@@ -1,0 +1,5 @@
+chmod u+x * 
+chmod u-x README.md
+git add .
+git commit -m "This file commits are for 0x04 assignment low level programming on functions"
+git push
