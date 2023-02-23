@@ -2,8 +2,9 @@
 #include<stdio.h>
 
 /**
- * _isdigt - checks is a character is uppercase
+ * _isdigit - checks is a character is uppercase
  *
+ *@c: input
  * Return: returns 1 if true else 0 if false
  */
 
