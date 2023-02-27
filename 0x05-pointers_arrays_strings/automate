@@ -1,0 +1,4 @@
+#!/bin/bash
+git add .
+git commit -m "in this repo we shall work with pointers and arrays"
+git push
