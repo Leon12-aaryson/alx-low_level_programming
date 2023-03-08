@@ -1,6 +1,6 @@
 #include "main.h"
 
-/*
+/**
 * _puts_recursion - prints recursive blcks
 *@s: is a pointer var
 *Return: returns value after compilation
