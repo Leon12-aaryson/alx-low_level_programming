@@ -2,112 +2,143 @@
 #include <stdio.h>
 #include <stdarg.h>
 
-void print_char(va_list arg);
-void print_int(va_list arg);
-void print_float(va_list arg);
-void print_string(va_list arg);
-void print_all(const char * const format, ...);
+/* Prototypes */
+void float_function(va_list args);
+void string_function(va_list args);
+void char_function(va_list args);
+void int_function(va_list args);
+
 
 /**
- * print_char - Prints a char.
- * @arg: A list of arguments pointing to
- *       the character to be printed.
+ * print_all - Prints any data type, followed by a new line.
+ * @format: A string of characters representing the argument types.
+ * @...: Elliplis for variable arguments.
  */
-void print_char(va_list arg)
-{
-	char letter;
 
-	letter = va_arg(arg, int);
-	printf("%c", letter);
+void print_all(const char * const format, ...)
+{
+	/* Using va_list data type from stdarg.h to store arguments */
+	va_list arguments;
+
+	int index_one, index_two;
+	char *separator = "";
+
+	/* An arrays with datatypes and corresponding functions*/
+	f funcs[] = {
+		{"c", char_function}, {"f", float_function},
+		{"i", int_function}, {"s", string_function}
+	};
+
+	/* Using va_start macro from stdarg.h to initialise list of arguments*/
+	va_start(arguments, format);
+
+	index_two = index_one = 0;
+
+	while (format && (*(format + index_two)))
+	{
+		index_one = 0;
+
+		while (index_one < 4
+		&& (*(format + index_two) != *(funcs[index_one].symbol)))
+			index_one++;
+
+		if (index_one < 4)
+		{
+			printf("%s", separator);
+			funcs[index_one].print(arguments);
+			separator = ", ";
+		}
+
+		index_two++;
+	}
+
+	/* Printing a line at the end of the function */
+	printf("\n");
+
+	/*
+	* Undefining arguments: Each invocation of va_start() must be matched by a
+	* Corresponding invocation of va_end() in the same function.
+	*/
+	va_end(arguments);
+}
+
+
+
+/**
+ * int_function - printing only integers.
+ * @args: list of arguments.
+ */
+
+void int_function(va_list args)
+{
+	int number;
+
+	/*
+	* Saving and printing the next INTEGER argument whenever encountered
+	* Each call to va_arg() modifies @int so that the next call
+	* returns the next argument.
+	*/
+	number = va_arg(args, int);
+	printf("%d", number);
 }
 
 /**
- * print_int - Prints an int.
- * @arg: A list of arguments pointing to
- *       the integer to be printed.
+ * float_function - printing floats only.
+ * @args: arguments
  */
-void print_int(va_list arg)
-{
-	int num;
 
-	num = va_arg(arg, int);
-	printf("%d", num);
+void float_function(va_list args)
+{
+	float number;
+
+	/*
+	* Saving and printing the next double argument whenever encountered
+	* Each call to va_arg() modifies @int so that the next call
+	* returns the next argument.
+	*/
+	number = va_arg(args, double);
+	printf("%f", number);
 }
 
 /**
- * print_float - Prints a float.
- * @arg: A list of arguments pointing to
- *       the float to be printed.
+ * string_function - Prints strings only.
+ * @args: A list of arguments
  */
-void print_float(va_list arg)
+
+void string_function(va_list args)
 {
-	float num;
+	char *string;
 
-	num = va_arg(arg, double);
-	printf("%f", num);
-}
+	/*
+	* Saving and printing the next string argument whenever encountered
+	* Each call to va_arg() modifies @int so that the next call
+	* returns the next argument.
+	*/
+	string = va_arg(args, char *);
 
-/**
- * print_string - Prints a string.
- * @arg: A list of arguments pointing to
- *       the string to be printed.
- */
-void print_string(va_list arg)
-{
-	char *str;
-
-	str = va_arg(arg, char *);
-
-	if (str == NULL)
+	if (string == NULL)
 	{
 		printf("(nil)");
 		return;
 	}
 
-	printf("%s", str);
+	printf("%s", string);
 }
 
+
 /**
- * print_all - Prints anything, followed by a new line.
- * @format: A string of characters representing the argument types.
- * @...: A variable number of arguments to be printed.
- *
- * Description: Any argument not of type char, int, float,
- *              or char * is ignored.
- *              If a string argument is NULL, (nil) is printed instead.
+ * char_function - Prints a char.
+ * @args: list of arguments.
  */
-void print_all(const char * const format, ...)
+void char_function(va_list args)
 {
-	va_list args;
-	int i = 0, j = 0;
-	char *separator = "";
-	printer_t funcs[] = {
-		{"c", print_char},
-		{"i", print_int},
-		{"f", print_float},
-		{"s", print_string}
-	};
+	char character;
 
-	va_start(args, format);
-
-	while (format && (*(format + i)))
-	{
-		j = 0;
-
-		while (j < 4 && (*(format + i) != *(funcs[j].symbol)))
-			j++;
-
-		if (j < 4)
-		{
-			printf("%s", separator);
-			funcs[j].print(args);
-			separator = ", ";
-		}
-
-		i++;
-	}
-
-	printf("\n");
-
-	va_end(args);
+	/*
+	* Saving and printing the next CHARACTER argument whenever encountered
+	* Each call to va_arg() modifies @int so that the next call
+	* returns the next argument.
+	*/
+	character = va_arg(args, int);
+	printf("%c", character);
 }
