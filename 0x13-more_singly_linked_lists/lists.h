@@ -1,6 +1,24 @@
 #ifndef LISTS_H
 #define LISTS_H
 
+#include <strings.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+/**
+*struct listint_s - a struct that calls itself
+*
+*@n: this is a struct variable
+*
+*Return: returns a value of the struct n
+*/
+
+typedef struct listint_s
+{
+	int n;
+	struct listint_s *next;
+} listint_t;
+
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
 listint_t *add_nodeint(listint_t **head, const int n);
