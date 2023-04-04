@@ -13,9 +13,6 @@ size_t print_listint (const listint_t *h)
 {
 	size_t sem = 0;
 
-	if (next == NULL)
-		printf ("nil");
-
 	while (h)
 	{
 		sem++;
