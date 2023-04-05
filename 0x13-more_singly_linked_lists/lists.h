@@ -9,7 +9,7 @@
 *struct listint_s - a struct that calls itself
 *
 *@n: this is a struct variable
-*
+*@next: this indicates the next positin of an item in a linked list
 *Return: returns a value of the struct n
 */
 
