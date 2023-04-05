@@ -1,1 +1,1 @@
-This directory is for c-programming basics
+this reporitory is majorly for varaidic functions
