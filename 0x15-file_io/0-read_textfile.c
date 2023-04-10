@@ -26,7 +26,8 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	fileread = read(fileop, buffer, letters);
 	filewrite = write(STDOUT_FILENO, buffer, fileread);
 
-	if (fileop == -1 || fileread == -1 || filewrite == -1 || filewrite != fileread)
+	if (fileop == -1 || fileread == -1 || filewrite == -1 ||
+	filewrite != fileread)
 	{
 		free(buffer);
 		return (0);
