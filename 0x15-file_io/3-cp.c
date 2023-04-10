@@ -2,16 +2,11 @@
 #include "filefunc.h"
 
 /**
- * main - Copies the contents of a file to another file.
- * @argc: The number of arguments supplied to the program.
- * @argv: An array of pointers to the arguments.
+ * main - copies file contents of a file
+ * @argc: first parameter argument which depicts the integer value
+ * @argv: is a parameter argument for array string
  *
- * Return: 0 on success.
- *
- * Description: If the argument count is incorrect - exit code 97.
- *              If file_from does not exist or cannot be read - exit code 98.
- *              If file_to cannot be created or written to - exit code 99.
- *              If file_to or file_from cannot be closed - exit code 100.
+ * Return: returns 0
  */
 int main(int argc, char *argv[])
 {
@@ -37,7 +32,6 @@ int main(int argc, char *argv[])
 			free(buffer);
 			exit(98);
 		}
-
 		w = write(to, buffer, r);
 		if (to == -1 || w == -1)
 		{
@@ -46,7 +40,6 @@ int main(int argc, char *argv[])
 			free(buffer);
 			exit(99);
 		}
-
 		r = read(from, buffer, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
 
