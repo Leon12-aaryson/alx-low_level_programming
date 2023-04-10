@@ -1,4 +1,5 @@
 #include "main.h"
+#include "filefunc.h"
 
 /**
  * main - Copies the contents of a file to another file.
