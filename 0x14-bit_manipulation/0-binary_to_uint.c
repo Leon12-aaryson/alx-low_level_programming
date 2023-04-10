@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdlib.h>
 
 /**
 *binary_to_unit - conversion from binary to number
@@ -20,7 +19,7 @@ unsigned int binary_to_uint(const char *b)
 	{
 		i <<= 1;
 		i += b[len] - '0';
-		i++;
+		len++;
 	}
 	return (i);
 
