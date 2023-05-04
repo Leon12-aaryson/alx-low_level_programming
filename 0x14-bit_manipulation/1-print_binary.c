@@ -9,8 +9,20 @@
 
 void print_binary(unsigned long int n)
 {
-	if (n > 1)
-		print_binary(n >> 1);
+	int len;
+	int buff, num = 1;
 
-	_putchar((n && 1) + '0');
+	for (len = 0, buff = n; buff > 0; len++)
+		buff >>= 1;
+
+	if (--len > 0)
+		num <<= len;
+
+	for (; num > 0; num >>= 1)
+	{
+		if (n & num)
+			_putchar('1');
+		else
+			_putchar('0');
+	}
 }

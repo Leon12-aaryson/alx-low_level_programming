@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include <stddef.h>
+#include <unistd.h>
 
 int _putchar(char c);
 unsigned int binary_to_uint(const char *b);
@@ -12,4 +13,3 @@ unsigned int flip_bits(unsigned long int n, unsigned long int m);
 int get_endianness(void);
 
 #endif
-
